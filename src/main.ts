@@ -1,0 +1,37 @@
+import { loading } from "../lib/main";
+const clickBox = document.querySelector<HTMLDivElement>(".js-click-box");
+
+const methodMap = {
+  showLoading: () => {
+    const loadingId = loading.show({
+      mask: true,
+      theme: "normal",
+    });
+    if (loadingId) {
+    //   console.log("loading id === > " + loadingId);
+      setTimeout(() => {
+        loading.hide(loadingId);
+      }, 2000);
+    }
+  },
+  showPicLoading: () => {
+    const loadingId = loading.show({
+      mask: false,
+      theme: "pic",
+      pic: "/loading.gif",
+    });
+    if (loadingId) {
+    //   console.log("loading id === > " + loadingId);
+      setTimeout(() => {
+        loading.hide(loadingId);
+      }, 2000);
+    }
+  },
+} as Record<string, Function>;
+
+if (clickBox != null) {
+  clickBox.onclick = (e) => {
+    const target = e?.target as HTMLButtonElement;
+    methodMap[target?.dataset?.btn as string]();
+  };
+}
