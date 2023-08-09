@@ -3,10 +3,7 @@ const clickBox = document.querySelector<HTMLDivElement>(".js-click-box");
 
 const methodMap = {
   showLoading: () => {
-    const loadingId = loading.show({
-      mask: true,
-      theme: "normal",
-    });
+    const loadingId = loading.show();
     if (loadingId) {
     //   console.log("loading id === > " + loadingId);
       setTimeout(() => {
@@ -19,6 +16,22 @@ const methodMap = {
       mask: false,
       theme: "pic",
       pic: "/loading.gif",
+    });
+    if (loadingId) {
+    //   console.log("loading id === > " + loadingId);
+      setTimeout(() => {
+        loading.hide(loadingId);
+      }, 2000);
+    }
+  },
+
+  
+  showPicRefLoading: () => {
+    const loadingId = loading.show({
+      mask: false,
+      theme: "pic",
+      pic: "/loading.gif",
+      ref: document.querySelector(".js-accc")
     });
     if (loadingId) {
     //   console.log("loading id === > " + loadingId);

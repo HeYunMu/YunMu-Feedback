@@ -1,5 +1,9 @@
 @import "./anim.css";
 
+.nil-loading-conatiner {
+  position: relative;
+}
+
 .nil-mask {
   position: fixed;
   top: 0;
@@ -10,6 +14,9 @@
   background-color: rgba(0, 0, 0, 0.1);
   &.bn {
     background-color: transparent;
+  }
+  &.nil-has-ref {
+    position: absolute;
   }
 }
 
@@ -22,6 +29,9 @@
   left: 50%;
 
   transform: translateX(-50%) translateY(-50%);
+  &.nil-has-ref {
+    position: absolute;
+  }
   &__inner {
     width: 120px;
     height: 120px;

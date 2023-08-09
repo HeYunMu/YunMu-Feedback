@@ -6,16 +6,20 @@ export interface LoadingConfig {
   mask?: boolean;
   theme?: "normal" | "pic";
   pic?: string;
+  ref?: Element | null;
 }
 export interface LoadingFun {
   show: (config: LoadingConfig) => void;
   hide: (uid: string) => void;
 }
 
-function createNormalLoading(msg: string, uid: string) {
+function createNormalLoading(msg: string, uid: string, hasRef: boolean) {
   if (document.body.querySelectorAll(`[loading-${uid}]`).length === 0) {
     const div = document.createElement("div");
     div.classList.add("nil-toast-loading");
+    if (hasRef) {
+      div.classList.add("nil-has-ref");
+    }
     div.setAttribute(`loading-${uid}`, "");
     div.innerHTML = `<div class="nil-toast-loading__inner animated">
   <svg class="animated animate__changeright" viewBox="0 0 1024 1024" version="1.1"
@@ -28,13 +32,16 @@ function createNormalLoading(msg: string, uid: string) {
   }
 }
 
-function createPicLoading(pic: string, uid: string) {
+function createPicLoading(pic: string, uid: string, hasRef: boolean) {
   if ((pic ?? "") == "") {
     throw ReferenceError("pic is not defined");
   }
   if (document.body.querySelectorAll(`[loading-${uid}]`).length === 0) {
     const div = document.createElement("div");
     div.classList.add("nil-toast-loading", "pic");
+    if (hasRef) {
+      div.classList.add("nil-has-ref");
+    }
     div.setAttribute(`loading-${uid}`, "");
     div.innerHTML = `<div class="nil-toast-loading__inner animated">
     <img class="pic_inner" src="${pic}" />
@@ -52,21 +59,28 @@ export function show(config?: LoadingConfig) {
       message: "正在努力加载中",
       mask: true,
       theme: "normal",
+      pic: "",
+      ref: null,
     } as LoadingConfig,
     config
   );
-  showMask(config.mask ?? true);
+  showMask(config.mask ?? true , config.ref);
   let loadingDiv: HTMLDivElement | null = null;
   if (config.theme === "normal") {
-    loadingDiv = createNormalLoading(config.message ?? "正在努力加载中", uid);
+    loadingDiv = createNormalLoading(config.message ?? "正在努力加载中", uid, !!config.ref);
   } else if (config.theme === "pic") {
-    loadingDiv = createPicLoading(config.pic ?? "", uid);
+    loadingDiv = createPicLoading(config.pic ?? "", uid, !!config.ref);
   }
 
   if (loadingDiv == null) {
     return;
   }
-  document.body.appendChild(loadingDiv);
+
+  if (config.ref) {
+    config.ref.appendChild(loadingDiv);
+  } else {
+    document.body.appendChild(loadingDiv);
+  }
   const msgInnerDiv = loadingDiv.querySelector(".nil-toast-loading__inner");
   if (msgInnerDiv) {
     msgInnerDiv.classList.add("animate__bounceIn");
