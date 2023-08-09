@@ -1,4 +1,4 @@
-@import url(e:\YunMu-UI\YunMu-Feedback\lib\css\anim.css);
+@import url("./anim.css");
 .nil-mask {
   position: fixed;
   top: 0;

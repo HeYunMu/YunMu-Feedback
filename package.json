@@ -12,6 +12,8 @@
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
   },
+  "main": "lib/main.ts",
+  "types": "lib/main.ts",
   "dependencies": {
     "@types/uuid": "^9.0.2",
     "uuid": "^9.0.0"
