@@ -2,6 +2,8 @@
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
 
+import libCss from 'vite-plugin-libcss';
+
 export default defineConfig({
   build: {
     lib: {
@@ -14,4 +16,7 @@ export default defineConfig({
     rollupOptions: {
     },
   },
+  plugins: [
+    libCss()
+  ]
 })

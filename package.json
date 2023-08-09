@@ -9,8 +9,10 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "sass": "^1.64.2",
     "typescript": "^5.0.2",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "vite-plugin-libcss": "^1.1.1"
   },
   "main": "lib/main.ts",
   "types": "lib/main.ts",

@@ -1,4 +1,4 @@
-import "./css/main.css";
+import "./css/main.scss";
 
 export * as loading from "./comps/loading";
 
