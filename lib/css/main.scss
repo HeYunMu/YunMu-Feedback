@@ -1,10 +1,10 @@
 @import "./anim.css";
 
-.nil-loading-conatiner {
+.yun-loading-conatiner {
   position: relative;
 }
 
-.nil-mask {
+.yun-mask {
   position: fixed;
   top: 0;
   left: 0;
@@ -15,12 +15,12 @@
   &.bn {
     background-color: transparent;
   }
-  &.nil-has-ref {
+  &.yun-has-ref {
     position: absolute;
   }
 }
 
-.nil-toast-loading {
+.yun-toast-loading {
   z-index: 2;
   margin: 0;
   position: fixed;
@@ -29,7 +29,7 @@
   left: 50%;
 
   transform: translateX(-50%) translateY(-50%);
-  &.nil-has-ref {
+  &.yun-has-ref {
     position: absolute;
   }
   &__inner {
@@ -49,9 +49,15 @@
     }
   }
   &.pic {
-    .nil-toast-loading__inner {
+    .yun-toast-loading__inner {
       background-color: transparent;
       box-shadow: none;
     }
+  }
+}
+
+.yun-img {
+  &__hidden {
+    visibility: hidden;
   }
 }

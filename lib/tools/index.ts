@@ -1,14 +1,14 @@
 export function showMask(flag: boolean, ref?: Element | null) {
-  if (document.body.querySelectorAll(".nil-mask").length === 0) {
+  if (document.body.querySelectorAll(".yun-mask").length === 0) {
     const div = document.createElement("div");
     div.classList.add(
-      "nil-mask",
+      "yun-mask",
       "animate__opcity120",
       flag ? "null" : "bn",
-      !!ref ? "nil-has-ref" : "null"
+      !!ref ? "yun-has-ref" : "null"
     );
     if (ref) {
-      ref.classList.add("nil-loading-conatiner");
+      ref.classList.add("yun-loading-conatiner");
       ref.appendChild(div);
     } else {
       document.body.appendChild(div);
@@ -20,13 +20,13 @@ export function showMask(flag: boolean, ref?: Element | null) {
 }
 
 export function closeMask() {
-  if (document.body.querySelectorAll(".nil-mask").length > 0) {
-    const div = document.body.querySelector(".nil-mask");
+  if (document.body.querySelectorAll(".yun-mask").length > 0) {
+    const div = document.body.querySelector(".yun-mask");
     if (div) {
       div.classList.add("animate__opcity021");
       setTimeout(function () {
         div.remove();
-        (div.parentNode as HTMLDivElement)?.classList.remove("nil-loading-conatiner")
+        (div.parentNode as HTMLDivElement)?.classList.remove("yun-loading-conatiner")
       }, 300);
     }
   }

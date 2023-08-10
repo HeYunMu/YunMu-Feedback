@@ -1,4 +1,4 @@
-import { loading } from "../lib/main";
+import { img, loading } from "../lib/main";
 const clickBox = document.querySelector<HTMLDivElement>(".js-click-box");
 
 const methodMap = {
@@ -40,6 +40,10 @@ const methodMap = {
       }, 2000);
     }
   },
+
+  imgInit: () => {
+    img.init()
+  }
 } as Record<string, Function>;
 
 if (clickBox != null) {

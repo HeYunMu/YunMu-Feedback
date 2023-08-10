@@ -1,6 +1,7 @@
 import "./css/main.scss";
 
 export * as loading from "./comps/loading";
+export * as img from "./comps/img";
 
 console.log(
   "%cNILBRAINS%cme@nilbrains.com",
