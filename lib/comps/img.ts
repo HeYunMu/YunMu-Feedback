@@ -1,21 +1,34 @@
-import { showMask } from "../tools";
-
 interface ImgInitConfig {
   // 选择器 默认 ".yun-img-select"
   select?: string;
   // 点击蒙层关闭 默认 true
-  maskClose?: boolean;
+  maskColor?: string;
+  zindex?: number;
 }
 
 interface ImgFun {
   init: (config: ImgInitConfig) => void;
 }
 
+function createPicBox(pic: string) {
+  if ((pic ?? "") == "") {
+    throw ReferenceError("pic is not defined");
+  }
+  if (document.body.querySelectorAll(`.yun-img-box-conatiner`).length === 0) {
+    const div = document.createElement("div");
+    div.classList.add("yun-img-box-conatiner", "animated");
+    div.innerHTML = `<img class="yun-img-opened animated" src="${pic}" />`;
+    return div;
+  } else {
+    return null;
+  }
+}
+
 export function init(config?: ImgInitConfig) {
   config = Object.assign(
     {
       select: ".yun-img-select",
-      maskClose: true,
+      maskColor: "rgba(0, 0, 0, 0.3)",
     },
     config
   );
@@ -27,25 +40,45 @@ export function init(config?: ImgInitConfig) {
 
   for (let index = 0; index < imgDivs.length; index++) {
     const element = imgDivs[index];
+    // element.classList.add("yun-img__self");
     element.onclick = function (_e) {
-      const oldNode = this as HTMLDivElement;
-      const newNode = oldNode.cloneNode(true) as HTMLDivElement;
+      const oldNode = this as HTMLImageElement;
+      // const newNode = oldNode.cloneNode(true) as HTMLImageElement;
+      // oldNode.classList.add("yun-img__hidden");
+      const imgBox = createPicBox(oldNode.getAttribute("src") ?? "");
+      if (imgBox) {
+        imgBox.setAttribute(
+          "style",
+          " " +
+            `--yun-img-box-zindex: ${
+              config?.zindex ?? 1000
+            }; --yun-img-box-bgc: ${config?.maskColor ?? "rgba(0, 0, 0, 0.3)"};`
+        );
+        document.body.appendChild(imgBox);
 
-      oldNode.classList.add("yun-img__hidden");
+        const innerDiv = imgBox.querySelector(".yun-img-opened");
+        if (innerDiv) {
+          innerDiv.classList.add("animate__zoomIn");
+          setTimeout(function () {
+            innerDiv.classList.remove("animate__zoomIn");
+          }, 500);
+        }
+        // 注册关闭
+        const emitClick = function () {
+          if (innerDiv) {
+            innerDiv.classList.add("animate__zoomOut");
+            imgBox.classList.add("animate__fadeOut");
+          }
+          setTimeout(function () {
+            imgBox.remove();
+            window.removeEventListener("scroll", emitClick, false);
+          }, 500);
+        };
 
-      showMask(true);
-      // 获取元元素宽高比
-    //   const hw = oldNode.clientHeight / oldNode.clientWidth;
-    //   const imgHei = Math.floor(document.documentElement.clientWidth * 0.9 * hw);
-    //   //   newNode.classList.add("yun-img__opened")
-    //   newNode.style.width = document.documentElement.clientWidth * 0.9 + "px";
-    //   newNode.style.height = imgHei + "px";
-    //   newNode.style.position = "absolute";
-    //   newNode.style.left = "0";
-    //   newNode.style.top =
-    //     (document.documentElement.clientHeight - imgHei) / 2 + "px";
-
-      document.body.appendChild(newNode);
+        imgBox.onclick = emitClick;
+        // document.body.onscroll = emitClick
+        window.addEventListener("scroll", emitClick, false);
+      }
     };
   }
 }

@@ -56,8 +56,19 @@
   }
 }
 
-.yun-img {
-  &__hidden {
-    visibility: hidden;
+.yun-img-box-conatiner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: var(--yun-img-box-zindex, 100);
+  background-color: var(--yun-img-box-bgc, rgba(0, 0, 0, 0.3));
+
+  .yun-img-opened {
+    max-width: 100%;
   }
 }

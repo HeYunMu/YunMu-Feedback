@@ -52,3 +52,5 @@ if (clickBox != null) {
     methodMap[target?.dataset?.btn as string]();
   };
 }
+
+img.init()
