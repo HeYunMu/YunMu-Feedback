@@ -1,8 +1,13 @@
 {
-  "name": "yunmu-feedback",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@heyunmu/yunmu-feedback",
+  "private": false,
+  "version": "0.0.1",
   "type": "module",
+  "author": {
+    "name": "nilbrains",
+    "email": "me@nilbrains.com",
+    "url": "https://www.nilbrains.com"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -12,12 +17,27 @@
     "sass": "^1.64.2",
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
+    "@types/uuid": "^9.0.2",
     "vite-plugin-libcss": "^1.1.1"
   },
-  "main": "lib/main.ts",
+  "files": [
+    "dist",
+    "lib"
+  ],
+  "main": "./dist/yun-mu-feed.umd.cjs",
+  "module": "./dist/yun-mu-feed.js",
+  "exports": {
+    ".": {
+      "import": "./dist/yun-mu-feed.js",
+      "require": "./dist/yun-mu-feed.umd.cjs"
+    }
+  },
   "types": "lib/main.ts",
   "dependencies": {
-    "@types/uuid": "^9.0.2",
     "uuid": "^9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HeYunMu/YunMu-Feedback.git"
   }
 }

@@ -1,4 +1,4 @@
-lockfileVersion: 5.4
+lockfileVersion: 5.3
 
 specifiers:
   '@types/uuid': ^9.0.2
@@ -9,10 +9,10 @@ specifiers:
   vite-plugin-libcss: ^1.1.1
 
 dependencies:
-  '@types/uuid': 9.0.2
   uuid: 9.0.0
 
 devDependencies:
+  '@types/uuid': 9.0.2
   sass: 1.64.2
   typescript: 5.1.6
   vite: 4.4.9_sass@1.64.2
@@ -220,7 +220,7 @@ packages:
 
   /@types/uuid/9.0.2:
     resolution: {integrity: sha512-kNnC1GFBLuhImSnV7w4njQkUiJi0ZXUycu1rUaouPqiKlXkh77JKgdRnTAp1x5eBwcIwbtI+3otwzuIDEuDoxQ==}
-    dev: false
+    dev: true
 
   /anymatch/3.1.3:
     resolution: {integrity: sha512-KMReFUr0B4t+D+OBkjR3KYqvocp2XaSzO55UcB6mgQMd3KbcE+mWTyvVV7D/zsdEbNnV6acZUutkiHQXvTr1Rw==}
