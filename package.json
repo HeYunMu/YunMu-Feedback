@@ -1,8 +1,7 @@
 {
   "name": "@heyunmu/yunmu-feedback",
   "private": false,
-  "version": "0.0.1",
-  "type": "module",
+  "version": "0.0.2",
   "author": {
     "name": "nilbrains",
     "email": "me@nilbrains.com",
@@ -24,12 +23,12 @@
     "dist",
     "lib"
   ],
-  "main": "./dist/yun-mu-feed.umd.cjs",
-  "module": "./dist/yun-mu-feed.js",
+  "main": "./dist/yun-mu-feed.umd.js",
+  "module": "./dist/yun-mu-feed.mjs",
   "exports": {
     ".": {
-      "import": "./dist/yun-mu-feed.js",
-      "require": "./dist/yun-mu-feed.umd.cjs"
+      "import": "./dist/yun-mu-feed.mjs",
+      "require": "./dist/yun-mu-feed.umd.js"
     }
   },
   "types": "lib/main.ts",
