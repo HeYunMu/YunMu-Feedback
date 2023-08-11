@@ -26,8 +26,6 @@ const methodMap = {
       }, 2000);
     }
   },
-
-  
   showPicRefLoading: () => {
     const loadingId = loading.show({
       mask: true,
@@ -44,7 +42,9 @@ const methodMap = {
   },
 
   imgInit: () => {
-    img.init()
+    img.once({
+      src: "https://cdn.pixabay.com/photo/2023/07/28/18/23/bird-8155768_1280.jpg"
+    })
   }
 } as Record<string, Function>;
 
