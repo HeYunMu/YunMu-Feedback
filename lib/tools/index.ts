@@ -15,7 +15,7 @@ export function showMask(flag: boolean, ref?: Element | null) {
     }
     setTimeout(function () {
       div.classList.remove("animate__opcity120");
-    }, 300);
+    }, 250);
   }
 }
 
@@ -26,8 +26,10 @@ export function closeMask() {
       div.classList.add("animate__opcity021");
       setTimeout(function () {
         div.remove();
-        (div.parentNode as HTMLDivElement)?.classList.remove("yun-loading-conatiner")
-      }, 300);
+        (div.parentNode as HTMLDivElement)?.classList.remove(
+          "yun-loading-conatiner"
+        );
+      }, 250);
     }
   }
 }

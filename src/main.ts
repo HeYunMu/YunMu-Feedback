@@ -15,7 +15,9 @@ const methodMap = {
     const loadingId = loading.show({
       mask: false,
       theme: "pic",
-      pic: "/loading.gif",
+      // pic: "/loading.gif",
+      pic: "https://app.nilbrains.com/t/loading2.gif",
+      picWidth: "265px"
     });
     if (loadingId) {
     //   console.log("loading id === > " + loadingId);
@@ -28,7 +30,7 @@ const methodMap = {
   
   showPicRefLoading: () => {
     const loadingId = loading.show({
-      mask: false,
+      mask: true,
       theme: "pic",
       pic: "/loading.gif",
       ref: document.querySelector(".js-accc")

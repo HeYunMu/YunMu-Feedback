@@ -7,6 +7,7 @@ export interface LoadingConfig {
   theme?: "normal" | "pic";
   pic?: string;
   ref?: Element | null;
+  picWidth?: string;
 }
 export interface LoadingFun {
   show: (config: LoadingConfig) => void;
@@ -75,6 +76,8 @@ export function show(config?: LoadingConfig) {
   if (loadingDiv == null) {
     return;
   }
+
+  loadingDiv.setAttribute("style", `--yun-loading-img-width: ${config.picWidth ?? "120px"}`)
 
   if (config.ref) {
     config.ref.appendChild(loadingDiv);
