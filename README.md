@@ -1,5 +1,7 @@
 # YunMuFeed
 
+[![Security Status](https://www.murphysec.com/platform3/v31/badge/1689826654463746048.svg)](https://www.murphysec.com/console/report/1689826654425997312/1689826654463746048)
+
 ## 模块 **loading**
 
 **参数**
