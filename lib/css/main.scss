@@ -70,8 +70,10 @@
   top: 0;
   z-index: var(--yun-img-box-zindex, 100);
   background-color: var(--yun-img-box-bgc, rgba(0, 0, 0, 0.3));
+  cursor: zoom-out;
 
   .yun-img-opened {
     max-width: 100%;
+    cursor: zoom-out;
   }
 }
