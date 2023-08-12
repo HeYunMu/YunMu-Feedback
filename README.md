@@ -38,3 +38,27 @@ if (loadingId) {
   }, 2000);
 }
 ```
+
+## 模块 **img**
+
+**init 参数**
+
+| 参数项     | 可选   | 默认值             | 注释     |
+| ---------- | ------ | ------------------ | -------- |
+| maskColor  | string | rgba(0, 0, 0, 0.3) | 背景颜色 |
+| zindex     | string | 1000               | 层级     |
+| loadingPic | string | -                  | 加载图片 |
+| errorPic   | string | -                  | 失败图片 |
+| select     | string | .yun-img-select    | 选择器   |
+
+**使用**
+
+```js
+// 仅显示一次
+img.once({
+  src: "https://cdn.pixabay.com/photo/2023/07/28/18/23/bird-8155768_1280.jpg",
+});
+
+// 全局初始化
+img.init();
+```
