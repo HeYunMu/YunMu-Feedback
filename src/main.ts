@@ -1,11 +1,11 @@
-import { img, loading } from "../lib/main";
+import { alert, img, loading } from "../lib/main";
 const clickBox = document.querySelector<HTMLDivElement>(".js-click-box");
 
 const methodMap = {
   showLoading: () => {
     const loadingId = loading.show();
     if (loadingId) {
-    //   console.log("loading id === > " + loadingId);
+      //   console.log("loading id === > " + loadingId);
       setTimeout(() => {
         loading.hide(loadingId);
       }, 2000);
@@ -17,10 +17,10 @@ const methodMap = {
       theme: "pic",
       // pic: "/loading.gif",
       pic: "https://app.nilbrains.com/t/loading2.gif",
-      picWidth: "265px"
+      picWidth: "265px",
     });
     if (loadingId) {
-    //   console.log("loading id === > " + loadingId);
+      //   console.log("loading id === > " + loadingId);
       setTimeout(() => {
         loading.hide(loadingId);
       }, 2000);
@@ -31,10 +31,10 @@ const methodMap = {
       mask: true,
       theme: "pic",
       pic: "/loading.gif",
-      ref: document.querySelector(".js-accc")
+      ref: document.querySelector(".js-accc"),
     });
     if (loadingId) {
-    //   console.log("loading id === > " + loadingId);
+      //   console.log("loading id === > " + loadingId);
       setTimeout(() => {
         loading.hide(loadingId);
       }, 2000);
@@ -43,9 +43,21 @@ const methodMap = {
 
   imgInit: () => {
     img.once({
-      src: "https://cdn.pixabay.com/photo/2023/07/28/18/23/bird-8155768_1280.jpg"
-    })
-  }
+      src: "https://cdn.pixabay.com/photo/2023/07/28/18/23/bird-8155768_1280.jpg",
+    });
+  },
+
+  showAlert: () => {
+    alert({
+      message:
+        "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur nihil qui perspiciatis, odit corrupti repudiandae, amet consequuntur minus dolorum omnis natus facilis aut ea explicabo maxime quod dolorem illo ex.",
+      method(_e, option, hide) {
+        console.log(option);
+        hide();
+        return true;
+      },
+    });
+  },
 } as Record<string, Function>;
 
 if (clickBox != null) {
@@ -54,5 +66,3 @@ if (clickBox != null) {
     methodMap[target?.dataset?.btn as string]();
   };
 }
-
-img.init()

@@ -2,6 +2,9 @@ import "./css/main.scss";
 
 export * as loading from "./comps/loading";
 export * as img from "./comps/img";
+import { alert } from "./comps/alert";
+
+export { alert };
 
 console.log(
   "%cNILBRAINS%cme@nilbrains.com",

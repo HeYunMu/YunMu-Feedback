@@ -109,10 +109,3 @@ export function hide(uid: string) {
     }
   }
 }
-
-const loading: LoadingFun = {
-  show,
-  hide,
-};
-
-export default loading;
