@@ -49,18 +49,41 @@ const methodMap = {
 
   showAlert: () => {
     alert({
+      icon: "success",
       buttons: [
-        { name: "王花花", method: "" },
-        { name: "王花花2", method: "", class: "primary,lllll" },
+        { name: "王花花", method: "success", class: "success" },
+        { name: "王花花2", method: "", class: "primary" },
       ],
       confirmShow: false,
       cancelShow: false,
-      message: "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit. ",
+      message:
+        "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit. ",
       method(_e, option, hide) {
         console.log(option);
         hide();
         return true;
       },
+    });
+  },
+  showAlert1: () => {
+    alert({
+      icon: "error",
+      message:
+        "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit. ",
+    });
+  },
+  showAlert2: () => {
+    alert({
+      icon: "warning",
+      message:
+        "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit. ",
+    });
+  },
+  showAlert3: () => {
+    alert({
+      icon: "info",
+      message:
+        "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit. ",
     });
   },
 } as Record<string, Function>;

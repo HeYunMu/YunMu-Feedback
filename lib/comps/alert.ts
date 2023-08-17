@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { h } from "../tools";
+import { initIcon } from "../tools/icons";
 
 export interface YunAlertButton {
   name: string;
@@ -10,7 +11,7 @@ export interface YunAlertButton {
 export interface YunAlertConfig {
   title?: string;
   message: string;
-  icon?: string;
+  icon?: "error" | "warning" | "success" | "info" | string;
   confirmShow?: boolean;
   confirmText?: string;
   cancelShow?: boolean;
@@ -61,11 +62,10 @@ function show(config: YunAlertConfig) {
 
   const base = h("div");
   base.classList.add("yun-alert-box", "animated");
+
   if (config.icon) {
-    const icon = h("img");
-    icon.classList.add("yun-alert-icon");
-    icon.src = config.icon ?? "";
-    base.appendChild(icon);
+    const icon = initIcon(config.icon);
+    icon && base.appendChild(icon);
   }
 
   const title = h("div");
