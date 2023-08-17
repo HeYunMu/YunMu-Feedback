@@ -1,14 +1,21 @@
 import { v4 as uuidv4 } from "uuid";
 import { h } from "../tools";
 
-interface YunAlertConfig {
+export interface YunAlertButton {
+  name: string;
+  class?: string;
+  method: string;
+}
+
+export interface YunAlertConfig {
   title?: string;
   message: string;
   icon?: string;
+  confirmShow?: boolean;
   confirmText?: string;
   cancelShow?: boolean;
   cancelText?: string;
-  buttons?: string[];
+  buttons?: YunAlertButton[];
   animate?: string;
   method?: (e: Event, option: string, hide: () => void) => boolean;
 }
@@ -71,25 +78,59 @@ function show(config: YunAlertConfig) {
   message.innerText = config.message ?? "";
   base.appendChild(message);
 
+  if (config.buttons && config.buttons.length > 0) {
+    //   生成自定义按钮
+    const customBox = h("div");
+    customBox.classList.add("yun-alert-custom-box");
+
+    for (let index = 0; index < config.buttons.length; index++) {
+      const item = config.buttons[index];
+
+      const btn = h("button");
+      btn.setAttribute(
+        "data-option",
+        item?.method ?? "" != "" ? item?.method : `custom${index + 1}`
+      );
+      btn.classList.add("yun-alert-btn");
+      if (item?.class) {
+        const _cs = item?.class.split(/[ ,]/);
+        _cs.forEach((element) => {
+          btn.classList.add(element);
+        });
+      }
+      btn.innerText = item.name ?? "";
+      customBox.appendChild(btn);
+      btn.onclick = _fn;
+    }
+
+    base.appendChild(customBox);
+  }
+
   //   生成按钮
   const optionsBox = h("div");
   optionsBox.classList.add("yun-alert-options-box");
 
-  const cancelButton = h("button");
-  cancelButton.setAttribute("data-option", "cancel");
-  cancelButton.classList.add("yun-alert-btn");
-  cancelButton.innerText = config.cancelText ?? "取消";
-  optionsBox.appendChild(cancelButton);
-  cancelButton.onclick = _fn;
+  if (config.cancelShow) {
+    const cancelButton = h("button");
+    cancelButton.setAttribute("data-option", "cancel");
+    cancelButton.classList.add("yun-alert-btn");
+    cancelButton.innerText = config.cancelText ?? "取消";
+    optionsBox.appendChild(cancelButton);
+    cancelButton.onclick = _fn;
+  }
 
-  const confirmButton = h("button");
-  confirmButton.setAttribute("data-option", "confirm");
-  confirmButton.classList.add("yun-alert-btn", "primary");
-  confirmButton.innerText = config.confirmText ?? "确认";
-  optionsBox.appendChild(confirmButton);
-  confirmButton.onclick = _fn;
+  if (config?.confirmShow !== false) {
+    const confirmButton = h("button");
+    confirmButton.setAttribute("data-option", "confirm");
+    confirmButton.classList.add("yun-alert-btn", "primary");
+    confirmButton.innerText = config.confirmText ?? "确认";
+    optionsBox.appendChild(confirmButton);
+    confirmButton.onclick = _fn;
+  }
 
-  base.appendChild(optionsBox);
+  if (config.cancelShow || config?.confirmShow !== false) {
+    base.appendChild(optionsBox);
+  }
 
   _.appendChild(base);
   document.body.appendChild(_);

@@ -49,8 +49,13 @@ const methodMap = {
 
   showAlert: () => {
     alert({
-      message:
-        "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur nihil qui perspiciatis, odit corrupti repudiandae, amet consequuntur minus dolorum omnis natus facilis aut ea explicabo maxime quod dolorem illo ex.",
+      buttons: [
+        { name: "王花花", method: "" },
+        { name: "王花花2", method: "", class: "primary,lllll" },
+      ],
+      confirmShow: false,
+      cancelShow: false,
+      message: "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit. ",
       method(_e, option, hide) {
         console.log(option);
         hide();
