@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
+import { h } from "../tools";
 
 interface YunAlertConfig {
   title?: string;
@@ -10,14 +11,6 @@ interface YunAlertConfig {
   buttons?: string[];
   animate?: string;
   method?: (e: Event, option: string, hide: () => void) => boolean;
-}
-
-function h<T extends keyof HTMLElementTagNameMap>(
-  tag: T
-): HTMLElementTagNameMap[T] {
-  const div = document.createElement(tag);
-  div.setAttribute("yun", "");
-  return div;
 }
 
 function hide(uid: string, config: YunAlertConfig) {

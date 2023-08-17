@@ -1,3 +1,15 @@
+export function h<T extends keyof HTMLElementTagNameMap>(
+  tag: T
+): HTMLElementTagNameMap[T] {
+  const div = document.createElement(tag);
+  div.setAttribute("yun", "");
+  return div;
+}
+
+export function $(query: string): NodeListOf<Element> {
+  return document.querySelectorAll(query);
+}
+
 export function showMask(flag: boolean, ref?: Element | null) {
   if (document.body.querySelectorAll(".yun-mask").length === 0) {
     const div = document.createElement("div");

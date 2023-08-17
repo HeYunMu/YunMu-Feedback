@@ -20,41 +20,60 @@
   }
 }
 
-.yun-toast-loading {
-  z-index: 2;
-  margin: 0;
+.yun-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
   position: fixed;
+  left: 0;
+  top: 0;
   user-select: none;
-  top: 50%;
-  left: 50%;
+  background: transparent;
+  transition: background 0.3s ease-in-out;
 
-  transform: translateX(-50%) translateY(-50%);
   &.yun-has-ref {
     position: absolute;
+    width: 100%;
+    height: 100%;
   }
-  &__inner {
-    width: var(--yun-loading-img-width, 120px);
-    height: 120px;
-    border-radius: 8px;
-    padding: 12px 16px;
-    background-color: rgba($color: #000000, $alpha: 0.4);
-    color: #f2f2f2;
-    box-shadow: 1px 1px 50px rgba(0, 0, 0, 0.3);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    &-msg {
-      margin-top: 10px;
-    }
-    .pic_inner {
-      width: 100%;
-    }
+
+  &.no-mask {
+    pointer-events: none;
+    background: transparent;
   }
-  &.pic {
-    .yun-toast-loading__inner {
-      background-color: transparent;
-      box-shadow: none;
+
+  &.mask {
+    background-color: rgba(0, 0, 0, 0.1);
+    pointer-events: auto;
+  }
+
+  .yun-toast-loading {
+    &__inner {
+      width: var(--yun-loading-img-width, 120px);
+      height: 120px;
+      border-radius: 8px;
+      padding: 12px 16px;
+      background-color: rgba($color: #000000, $alpha: 0.4);
+      color: #f2f2f2;
+      box-shadow: 1px 1px 50px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      &-msg {
+        margin-top: 10px;
+      }
+      .pic_inner {
+        width: 100%;
+      }
+    }
+    &.pic {
+      .yun-toast-loading__inner {
+        background-color: transparent;
+        box-shadow: none;
+      }
     }
   }
 }
@@ -87,13 +106,14 @@
   position: fixed;
   left: 0;
   top: 0;
+  user-select: none;
 
   .yun-alert-box[yun] {
     width: 260px;
     min-height: 160px;
     border-radius: 10px;
     background: #e5e5e5;
-    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.6), 0px 0px 2px rgba(0, 0, 0, 0.05),
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.05),
       0px 38px 90px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(80px);
     display: flex;
@@ -101,7 +121,7 @@
     justify-content: flex-start;
     align-items: center;
     padding: 20px 16px 16px 16px;
-    margin-bottom: 50%;
+    margin-bottom: 20vh;
   }
 
   .yun-alert-icon[yun] {
